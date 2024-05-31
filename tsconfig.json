@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target" : "es6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+  },
+}
