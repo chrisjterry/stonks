@@ -6,9 +6,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
 import Follow from './follow';
 import Notification from './notification';
+import Channel from './channel';
+import Comment from './comment';
+import Role from './role';
 
 @Entity()
 export default class Profile extends BaseEntity {
@@ -47,4 +51,13 @@ export default class Profile extends BaseEntity {
 
   @OneToMany(() => Notification, (notfication) => notfication.profile)
   notifications: Notification[]
+
+  @OneToOne(() => Channel, (channel) => channel.host)
+  channel: Channel
+
+  @OneToMany(() => Comment, (comment) => comment.profile)
+  comments: Comment[]
+
+  @OneToMany(() => Role, (role) => role.profile)
+  roles: Role[]
 };

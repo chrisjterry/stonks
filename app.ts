@@ -5,7 +5,7 @@ dotenv.config();
 
 import profileApi from './apis/profile';
 import followApi from './apis/follow';
-import streamApi from './apis/stream';
+import channelApi from './apis/channel';
 import AppDataSource from './dataSource';
 
 const app = express();
@@ -26,6 +26,6 @@ app.use((_, res, next) => {
 });
 app.use('/api/profile', profileApi);
 app.use('/api/follow', followApi);
-app.use('/api/stream', streamApi);
+app.use('/api/channel', channelApi);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

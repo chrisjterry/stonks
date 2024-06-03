@@ -1,6 +1,7 @@
 import validateInputs from '../../validators/notifyFollowers';
 import verifyProfile from '../../validators/verifyProfile';
 import Notification from '../../entities/notification';
+import notificationMailer from '../../utils/email/notificationMailer';
 
 interface NotificationData {
   token: string;
@@ -23,10 +24,21 @@ const notifyFollowers = async (data: NotificationData) => {
     let notifications = []
 
     follows.forEach(follow => {
-      notifications.push({
-        text: data.text,
-        profile: follow.follower
-      });
+      const { follower } = follow;
+      const { text } = data;
+
+      if (follower.active) {
+        notifications.push({
+          text,
+          profile: follower
+        });
+      } else {
+        notificationMailer({
+          senderUsername: profile.username,
+          recipient: follower.email,
+          content: text, 
+        })
+      }
     });
 
     const bulkNotifications = Notification.create(notifications)
