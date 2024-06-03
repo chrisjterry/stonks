@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  OneToOne,
 } from 'typeorm';
 import Follow from './follow';
 import Notification from './notification';
@@ -31,7 +30,7 @@ export default class Profile extends BaseEntity {
   @Column({ nullable: false })
   password: string
 
-  @Column()
+  @Column({ nullable: true })
   avatar: string
 
   @Column({ default: true })
@@ -52,8 +51,8 @@ export default class Profile extends BaseEntity {
   @OneToMany(() => Notification, (notfication) => notfication.profile)
   notifications: Notification[]
 
-  @OneToOne(() => Channel, (channel) => channel.host)
-  channel: Channel
+  @OneToMany(() => Channel, (channel) => channel.host)
+  channels: Channel
 
   @OneToMany(() => Comment, (comment) => comment.profile)
   comments: Comment[]

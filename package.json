@@ -4,9 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "start": "node app.ts",
-    "backend": "nodemon app.ts",
-    "generateMigration": "npx typeorm-ts-node-commonjs migration:generate ./migrations/create-role -d dataSource.ts",
+    "start": "nodemon app.ts",
+    "generateMigration": "npx typeorm-ts-node-commonjs migration:generate ./migrations/setup-db -d dataSource.ts",
     "migrate": "npx typeorm-ts-node-commonjs migration:run -d dataSource.ts"
   },
   "repository": {

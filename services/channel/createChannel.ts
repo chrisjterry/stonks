@@ -24,6 +24,7 @@ const createChannel = async (data: ChannelData) => {
     const { title, description } = data;
 
     const channel = new Channel();
+    console.log(host)
     channel.host = host;
     channel.title = title;
     channel.description = description;

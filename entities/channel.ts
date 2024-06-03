@@ -5,7 +5,6 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   OneToMany,
 } from 'typeorm';
 import Profile from './profile';
@@ -32,7 +31,7 @@ export default class Channel extends BaseEntity {
   @Column({ type: 'enum', enum: Statuses, default: Statuses.ACTIVE })
   status: Statuses
 
-  @OneToOne(() => Profile, (profile) => profile.channel)
+  @OneToMany(() => Profile, (profile) => profile.channels)
   host: Profile
 
   @OneToMany(() => Comment, (comment) => comment.channel)
